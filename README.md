@@ -24,4 +24,4 @@ Example:
 
 See more in the provided example: [main.c](src/examples/main.c).
 
-[screenshot](docs/images/tinge_macos_14.png)
+![screenshot](docs/images/tinge_macos_14.png)
