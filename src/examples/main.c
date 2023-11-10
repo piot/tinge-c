@@ -7,18 +7,13 @@
 #include <tinge/tinge.h>
 
 #include <clog/clog.h>
+#include <clog/console.h>
 
 clog_config g_clog;
 
-static void tyran_log_implementation(enum clog_type type, const char* string)
+int main(void)
 {
-    (void) type;
-    fprintf(stderr, "%s\n", string);
-}
-
-int main(int argc, char* argv[])
-{
-    g_clog.log = tyran_log_implementation;
+    g_clog.log = clog_console;
 
     uint8_t temp[16 * 1024];
     FldOutStream outStream;
@@ -29,7 +24,7 @@ int main(int argc, char* argv[])
     state.eightBit = 1;
 
     for (size_t i = 0; i < 256; ++i) {
-        tingeStateFgColor(&state, i);
+        tingeStateFgColor(&state, (uint8_t) i);
         if ((i % 16) == 0) {
             fldOutStreamWritef(&outStream, "\n");
         }
@@ -39,10 +34,10 @@ int main(int argc, char* argv[])
 
     fldOutStreamWritef(&outStream, "\n\n");
     for (size_t i = 0; i < 24; ++i) {
-        tingeStateFgColorIndex(&state, i);
+        tingeStateFgColorIndex(&state, (uint8_t) i);
         fldOutStreamWritef(&outStream, " %02X ", i);
         tingeStateReset(&state);
     }
 
-    printf("output:\n%s", tingeStateToString(&state));
+    printf("output:\n%s\n", tingeStateToString(&state));
 }

@@ -1,3 +1,5 @@
 deps*/
 cmake_install.cmake
 *.a
+.DS_Store
+src/examples/tinge_example
