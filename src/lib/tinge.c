@@ -1,7 +1,7 @@
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Peter Bjorklund. All rights reserved.
+/*----------------------------------------------------------------------------------------------------------
+ *  Copyright (c) Peter Bjorklund. All rights reserved. https://github.com/piot/tinge-c
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
+ *--------------------------------------------------------------------------------------------------------*/
 #include <flood/out_stream.h>
 #include <tinge/tinge.h>
 
@@ -16,7 +16,7 @@ void tingeStateFgColor(TingeState* self, uint8_t fgColor)
     if (self->eightBit) {
         fldOutStreamWritef(self->stream, "\033[38;5;%dm", fgColor);
     } else {
-        if (fgColor >= 0 && fgColor <= 7) {
+        if (fgColor <= 7) {
             fgColor += 30;
         } else if (fgColor >= 8 && fgColor <= 15) {
             fgColor += 90 - 8;
